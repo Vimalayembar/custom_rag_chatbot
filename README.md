@@ -1,34 +1,72 @@
-# custom_rag_chatbot
-# 📚 Custom RAG Chatbot API (PDF Question Answering)
+# 🤖 Custom RAG Chatbot API (PDF Question Answering)
 
-A lightweight REST API chatbot built with **FastAPI** and **Hugging Face Transformers** that can read and answer questions from your own **PDF documents** — without using OpenAI or paid APIs.
-
-> ✅ No OpenAI key required  
-> ✅ Runs entirely with open-source models  
-> ✅ Upload your own resume, syllabus, or notes and ask questions!
+A lightweight REST API chatbot built with **FastAPI** and **Hugging Face Transformers** that can read and answer questions from your own PDF documents — without using OpenAI or paid APIs.
 
 ---
 
-## 🚀 Features
+### ✅ Key Features
 
-- 📄 Extracts text from uploaded PDF files
-- 🧠 Uses Hugging Face's `distilbert-base-uncased-distilled-squad` for question answering
-- 🔗 API built using FastAPI with Swagger `/docs` for testing
-- ⚙️ Clean project structure: `main.py` (API) + `utils.py` (PDF reader)
+- 📄 Reads and understands uploaded PDF files
+- 🧠 Uses Hugging Face’s `distilbert-base-uncased-distilled-squad` model
+- 🔗 Built with FastAPI and tested via `/docs` (Swagger UI)
+- 💡 No API key or paid service required — runs 100% locally with open models
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠 Tech Stack
 
 - Python 3.10+
 - FastAPI
-- Uvicorn (ASGI Server)
+- Uvicorn (ASGI server)
 - Hugging Face Transformers
-- PyMuPDF (for PDF reading)
+- PyMuPDF (`fitz`) for PDF parsing
 
 ---
 
-## 📁 Project Structure
+### 🗂 Project Structure
 
-# pip install fastapi uvicorn transformers pymupdf
-#uvicorn main:app --reload --host 0.0.0.0 --port 8000
+custom_rag_chatbot/
+├── main.py # FastAPI app logic
+├── utils.py # PDF extraction helper
+├── sample.pdf # Your uploaded document
+├── README.md # This file
+
+yaml
+Copy
+Edit
+
+---
+
+### 🚀 Getting Started
+
+#### 1. Install Dependencies
+
+```bash
+pip install fastapi uvicorn transformers pymupdf
+2. Run the Server
+bash
+Copy
+Edit
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+📥 Upload Your PDF
+Upload a .pdf file (like a resume or article) and rename it as:
+
+Copy
+Edit
+sample.pdf
+📌 Make sure it has text, not just images!
+
+📘 Try It Out
+Go to: http://localhost:8000/docs
+
+Use the POST /ask endpoint
+
+Example query:
+
+json
+Copy
+Edit
+{
+  "query": "What is this document about?"
+}
+✅ If successful, you’ll get an answer based on the PDF content.
